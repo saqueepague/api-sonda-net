@@ -1,15 +1,15 @@
 # IO.Swagger.Api.SondaApiControllerApi
 
-All URIs are relative to *https://localhost/saqueepague-sonda/v1*
+All URIs are relative to *https://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**SondaPost**](SondaApiControllerApi.md#sondapost) | **POST** /sonda | Retorna o estado de uma transação.
+[**SaqueepagueSondaPost**](SondaApiControllerApi.md#saqueepaguesondapost) | **POST** /saqueepague/sonda | Retorna o estado de uma transação.
 
 
-<a name="sondapost"></a>
-# **SondaPost**
-> SondaResp SondaPost (SondaReq sondaReq)
+<a name="saqueepaguesondapost"></a>
+# **SaqueepagueSondaPost**
+> SondaResp SaqueepagueSondaPost (SondaReq sondaReq)
 
 Retorna o estado de uma transação.
 
@@ -25,7 +25,7 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class SondaPostExample
+    public class SaqueepagueSondaPostExample
     {
         public void main()
         {
@@ -38,12 +38,12 @@ namespace Example
             try
             {
                 // Retorna o estado de uma transação.
-                SondaResp result = apiInstance.SondaPost(sondaReq);
+                SondaResp result = apiInstance.SaqueepagueSondaPost(sondaReq);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling SondaApiControllerApi.SondaPost: " + e.Message );
+                Debug.Print("Exception when calling SondaApiControllerApi.SaqueepagueSondaPost: " + e.Message );
             }
         }
     }

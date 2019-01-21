@@ -1,4 +1,4 @@
-# IO.Swagger.Model.SondaReqInfTransacao
+# IO.Swagger.Model.SondaReqTransacao
 ## Properties
 
 Name | Type | Description | Notes

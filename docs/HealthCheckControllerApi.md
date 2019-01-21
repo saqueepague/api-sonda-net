@@ -1,10 +1,10 @@
-# IO.Swagger.Api.ActuatorControllerApi
+# IO.Swagger.Api.HealthCheckControllerApi
 
-All URIs are relative to *https://localhost/saqueepague-sonda/v1*
+All URIs are relative to *https://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ActuatorHealthGet**](ActuatorControllerApi.md#actuatorhealthget) | **GET** /actuator/health | Retorna o estado do serviço.
+[**ActuatorHealthGet**](HealthCheckControllerApi.md#actuatorhealthget) | **GET** /actuator/health | Retorna o estado do serviço.
 
 
 <a name="actuatorhealthget"></a>
@@ -29,10 +29,7 @@ namespace Example
     {
         public void main()
         {
-            // Configure OAuth2 access token for authorization: OAuth2
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
-
-            var apiInstance = new ActuatorControllerApi();
+            var apiInstance = new HealthCheckControllerApi();
 
             try
             {
@@ -42,7 +39,7 @@ namespace Example
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling ActuatorControllerApi.ActuatorHealthGet: " + e.Message );
+                Debug.Print("Exception when calling HealthCheckControllerApi.ActuatorHealthGet: " + e.Message );
             }
         }
     }
@@ -58,7 +55,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[OAuth2](../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 

@@ -21,68 +21,76 @@ namespace IO.Swagger.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public interface ISondaApiControllerApi : IApiAccessor
+    public interface IAuthControllerApi : IApiAccessor
     {
         #region Synchronous Operations
         /// <summary>
-        /// Retorna o estado de uma transação.
+        /// Retorna o token de autenticação do serviço.
         /// </summary>
         /// <remarks>
-        /// Procura o último estado conhecido de uma transação específica dos últimos 7 dias (casos que a sonda pode tentar verificar em finais de semana ou feriado).
+        /// Autentica o usuário e gera um token para a requisição de sonda.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="sondaReq">Objeto com dados de procura da transação.</param>
-        /// <returns>SondaResp</returns>
-        SondaResp SaqueepagueSondaPost (SondaReq sondaReq);
+        /// <param name="grantType">Constante passada para este tipo de autenticação: password.</param>
+        /// <param name="password">Senha disponibilizada pela SEP.</param>
+        /// <param name="username">Usuário disponibilizado pela SEP.</param>
+        /// <returns>AuthResp</returns>
+        AuthResp SaqueepagueOauthTokenPost (string grantType, string password, string username);
 
         /// <summary>
-        /// Retorna o estado de uma transação.
+        /// Retorna o token de autenticação do serviço.
         /// </summary>
         /// <remarks>
-        /// Procura o último estado conhecido de uma transação específica dos últimos 7 dias (casos que a sonda pode tentar verificar em finais de semana ou feriado).
+        /// Autentica o usuário e gera um token para a requisição de sonda.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="sondaReq">Objeto com dados de procura da transação.</param>
-        /// <returns>ApiResponse of SondaResp</returns>
-        ApiResponse<SondaResp> SaqueepagueSondaPostWithHttpInfo (SondaReq sondaReq);
+        /// <param name="grantType">Constante passada para este tipo de autenticação: password.</param>
+        /// <param name="password">Senha disponibilizada pela SEP.</param>
+        /// <param name="username">Usuário disponibilizado pela SEP.</param>
+        /// <returns>ApiResponse of AuthResp</returns>
+        ApiResponse<AuthResp> SaqueepagueOauthTokenPostWithHttpInfo (string grantType, string password, string username);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
-        /// Retorna o estado de uma transação.
+        /// Retorna o token de autenticação do serviço.
         /// </summary>
         /// <remarks>
-        /// Procura o último estado conhecido de uma transação específica dos últimos 7 dias (casos que a sonda pode tentar verificar em finais de semana ou feriado).
+        /// Autentica o usuário e gera um token para a requisição de sonda.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="sondaReq">Objeto com dados de procura da transação.</param>
-        /// <returns>Task of SondaResp</returns>
-        System.Threading.Tasks.Task<SondaResp> SaqueepagueSondaPostAsync (SondaReq sondaReq);
+        /// <param name="grantType">Constante passada para este tipo de autenticação: password.</param>
+        /// <param name="password">Senha disponibilizada pela SEP.</param>
+        /// <param name="username">Usuário disponibilizado pela SEP.</param>
+        /// <returns>Task of AuthResp</returns>
+        System.Threading.Tasks.Task<AuthResp> SaqueepagueOauthTokenPostAsync (string grantType, string password, string username);
 
         /// <summary>
-        /// Retorna o estado de uma transação.
+        /// Retorna o token de autenticação do serviço.
         /// </summary>
         /// <remarks>
-        /// Procura o último estado conhecido de uma transação específica dos últimos 7 dias (casos que a sonda pode tentar verificar em finais de semana ou feriado).
+        /// Autentica o usuário e gera um token para a requisição de sonda.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="sondaReq">Objeto com dados de procura da transação.</param>
-        /// <returns>Task of ApiResponse (SondaResp)</returns>
-        System.Threading.Tasks.Task<ApiResponse<SondaResp>> SaqueepagueSondaPostAsyncWithHttpInfo (SondaReq sondaReq);
+        /// <param name="grantType">Constante passada para este tipo de autenticação: password.</param>
+        /// <param name="password">Senha disponibilizada pela SEP.</param>
+        /// <param name="username">Usuário disponibilizado pela SEP.</param>
+        /// <returns>Task of ApiResponse (AuthResp)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AuthResp>> SaqueepagueOauthTokenPostAsyncWithHttpInfo (string grantType, string password, string username);
         #endregion Asynchronous Operations
     }
 
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public partial class SondaApiControllerApi : ISondaApiControllerApi
+    public partial class AuthControllerApi : IAuthControllerApi
     {
         private IO.Swagger.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SondaApiControllerApi"/> class.
+        /// Initializes a new instance of the <see cref="AuthControllerApi"/> class.
         /// </summary>
         /// <returns></returns>
-        public SondaApiControllerApi(String basePath)
+        public AuthControllerApi(String basePath)
         {
             this.Configuration = new IO.Swagger.Client.Configuration { BasePath = basePath };
 
@@ -90,12 +98,12 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SondaApiControllerApi"/> class
+        /// Initializes a new instance of the <see cref="AuthControllerApi"/> class
         /// using Configuration object
         /// </summary>
         /// <param name="configuration">An instance of Configuration</param>
         /// <returns></returns>
-        public SondaApiControllerApi(IO.Swagger.Client.Configuration configuration = null)
+        public AuthControllerApi(IO.Swagger.Client.Configuration configuration = null)
         {
             if (configuration == null) // use the default one in Configuration
                 this.Configuration = IO.Swagger.Client.Configuration.Default;
@@ -169,30 +177,40 @@ namespace IO.Swagger.Api
         }
 
         /// <summary>
-        /// Retorna o estado de uma transação. Procura o último estado conhecido de uma transação específica dos últimos 7 dias (casos que a sonda pode tentar verificar em finais de semana ou feriado).
+        /// Retorna o token de autenticação do serviço. Autentica o usuário e gera um token para a requisição de sonda.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="sondaReq">Objeto com dados de procura da transação.</param>
-        /// <returns>SondaResp</returns>
-        public SondaResp SaqueepagueSondaPost (SondaReq sondaReq)
+        /// <param name="grantType">Constante passada para este tipo de autenticação: password.</param>
+        /// <param name="password">Senha disponibilizada pela SEP.</param>
+        /// <param name="username">Usuário disponibilizado pela SEP.</param>
+        /// <returns>AuthResp</returns>
+        public AuthResp SaqueepagueOauthTokenPost (string grantType, string password, string username)
         {
-             ApiResponse<SondaResp> localVarResponse = SaqueepagueSondaPostWithHttpInfo(sondaReq);
+             ApiResponse<AuthResp> localVarResponse = SaqueepagueOauthTokenPostWithHttpInfo(grantType, password, username);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Retorna o estado de uma transação. Procura o último estado conhecido de uma transação específica dos últimos 7 dias (casos que a sonda pode tentar verificar em finais de semana ou feriado).
+        /// Retorna o token de autenticação do serviço. Autentica o usuário e gera um token para a requisição de sonda.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="sondaReq">Objeto com dados de procura da transação.</param>
-        /// <returns>ApiResponse of SondaResp</returns>
-        public ApiResponse< SondaResp > SaqueepagueSondaPostWithHttpInfo (SondaReq sondaReq)
+        /// <param name="grantType">Constante passada para este tipo de autenticação: password.</param>
+        /// <param name="password">Senha disponibilizada pela SEP.</param>
+        /// <param name="username">Usuário disponibilizado pela SEP.</param>
+        /// <returns>ApiResponse of AuthResp</returns>
+        public ApiResponse< AuthResp > SaqueepagueOauthTokenPostWithHttpInfo (string grantType, string password, string username)
         {
-            // verify the required parameter 'sondaReq' is set
-            if (sondaReq == null)
-                throw new ApiException(400, "Missing required parameter 'sondaReq' when calling SondaApiControllerApi->SaqueepagueSondaPost");
+            // verify the required parameter 'grantType' is set
+            if (grantType == null)
+                throw new ApiException(400, "Missing required parameter 'grantType' when calling AuthControllerApi->SaqueepagueOauthTokenPost");
+            // verify the required parameter 'password' is set
+            if (password == null)
+                throw new ApiException(400, "Missing required parameter 'password' when calling AuthControllerApi->SaqueepagueOauthTokenPost");
+            // verify the required parameter 'username' is set
+            if (username == null)
+                throw new ApiException(400, "Missing required parameter 'username' when calling AuthControllerApi->SaqueepagueOauthTokenPost");
 
-            var localVarPath = "/saqueepague/sonda";
+            var localVarPath = "/saqueepague/oauth/token";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -202,7 +220,7 @@ namespace IO.Swagger.Api
 
             // to determine the Content-Type header
             String[] localVarHttpContentTypes = new String[] {
-                "application/json"
+                "application/x-www-form-urlencoded"
             };
             String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
@@ -214,20 +232,15 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (sondaReq != null && sondaReq.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = this.Configuration.ApiClient.Serialize(sondaReq); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = sondaReq; // byte array
-            }
+            if (grantType != null) localVarFormParams.Add("grant_type", this.Configuration.ApiClient.ParameterToString(grantType)); // form parameter
+            if (password != null) localVarFormParams.Add("password", this.Configuration.ApiClient.ParameterToString(password)); // form parameter
+            if (username != null) localVarFormParams.Add("username", this.Configuration.ApiClient.ParameterToString(username)); // form parameter
 
-            // authentication (OAuth2) required
-            // oauth required
-            if (!String.IsNullOrEmpty(this.Configuration.AccessToken))
+            // authentication (BasicAuth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(this.Configuration.Username) || !String.IsNullOrEmpty(this.Configuration.Password))
             {
-                localVarHeaderParams["Authorization"] = "Bearer " + this.Configuration.AccessToken;
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password);
             }
 
             // make the HTTP request
@@ -239,41 +252,51 @@ namespace IO.Swagger.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("SaqueepagueSondaPost", localVarResponse);
+                Exception exception = ExceptionFactory("SaqueepagueOauthTokenPost", localVarResponse);
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<SondaResp>(localVarStatusCode,
+            return new ApiResponse<AuthResp>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (SondaResp) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(SondaResp)));
+                (AuthResp) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(AuthResp)));
         }
 
         /// <summary>
-        /// Retorna o estado de uma transação. Procura o último estado conhecido de uma transação específica dos últimos 7 dias (casos que a sonda pode tentar verificar em finais de semana ou feriado).
+        /// Retorna o token de autenticação do serviço. Autentica o usuário e gera um token para a requisição de sonda.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="sondaReq">Objeto com dados de procura da transação.</param>
-        /// <returns>Task of SondaResp</returns>
-        public async System.Threading.Tasks.Task<SondaResp> SaqueepagueSondaPostAsync (SondaReq sondaReq)
+        /// <param name="grantType">Constante passada para este tipo de autenticação: password.</param>
+        /// <param name="password">Senha disponibilizada pela SEP.</param>
+        /// <param name="username">Usuário disponibilizado pela SEP.</param>
+        /// <returns>Task of AuthResp</returns>
+        public async System.Threading.Tasks.Task<AuthResp> SaqueepagueOauthTokenPostAsync (string grantType, string password, string username)
         {
-             ApiResponse<SondaResp> localVarResponse = await SaqueepagueSondaPostAsyncWithHttpInfo(sondaReq);
+             ApiResponse<AuthResp> localVarResponse = await SaqueepagueOauthTokenPostAsyncWithHttpInfo(grantType, password, username);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        /// Retorna o estado de uma transação. Procura o último estado conhecido de uma transação específica dos últimos 7 dias (casos que a sonda pode tentar verificar em finais de semana ou feriado).
+        /// Retorna o token de autenticação do serviço. Autentica o usuário e gera um token para a requisição de sonda.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="sondaReq">Objeto com dados de procura da transação.</param>
-        /// <returns>Task of ApiResponse (SondaResp)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<SondaResp>> SaqueepagueSondaPostAsyncWithHttpInfo (SondaReq sondaReq)
+        /// <param name="grantType">Constante passada para este tipo de autenticação: password.</param>
+        /// <param name="password">Senha disponibilizada pela SEP.</param>
+        /// <param name="username">Usuário disponibilizado pela SEP.</param>
+        /// <returns>Task of ApiResponse (AuthResp)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<AuthResp>> SaqueepagueOauthTokenPostAsyncWithHttpInfo (string grantType, string password, string username)
         {
-            // verify the required parameter 'sondaReq' is set
-            if (sondaReq == null)
-                throw new ApiException(400, "Missing required parameter 'sondaReq' when calling SondaApiControllerApi->SaqueepagueSondaPost");
+            // verify the required parameter 'grantType' is set
+            if (grantType == null)
+                throw new ApiException(400, "Missing required parameter 'grantType' when calling AuthControllerApi->SaqueepagueOauthTokenPost");
+            // verify the required parameter 'password' is set
+            if (password == null)
+                throw new ApiException(400, "Missing required parameter 'password' when calling AuthControllerApi->SaqueepagueOauthTokenPost");
+            // verify the required parameter 'username' is set
+            if (username == null)
+                throw new ApiException(400, "Missing required parameter 'username' when calling AuthControllerApi->SaqueepagueOauthTokenPost");
 
-            var localVarPath = "/saqueepague/sonda";
+            var localVarPath = "/saqueepague/oauth/token";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -283,7 +306,7 @@ namespace IO.Swagger.Api
 
             // to determine the Content-Type header
             String[] localVarHttpContentTypes = new String[] {
-                "application/json"
+                "application/x-www-form-urlencoded"
             };
             String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
@@ -295,20 +318,15 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (sondaReq != null && sondaReq.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = this.Configuration.ApiClient.Serialize(sondaReq); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = sondaReq; // byte array
-            }
+            if (grantType != null) localVarFormParams.Add("grant_type", this.Configuration.ApiClient.ParameterToString(grantType)); // form parameter
+            if (password != null) localVarFormParams.Add("password", this.Configuration.ApiClient.ParameterToString(password)); // form parameter
+            if (username != null) localVarFormParams.Add("username", this.Configuration.ApiClient.ParameterToString(username)); // form parameter
 
-            // authentication (OAuth2) required
-            // oauth required
-            if (!String.IsNullOrEmpty(this.Configuration.AccessToken))
+            // authentication (BasicAuth) required
+            // http basic authentication required
+            if (!String.IsNullOrEmpty(this.Configuration.Username) || !String.IsNullOrEmpty(this.Configuration.Password))
             {
-                localVarHeaderParams["Authorization"] = "Bearer " + this.Configuration.AccessToken;
+                localVarHeaderParams["Authorization"] = "Basic " + ApiClient.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password);
             }
 
             // make the HTTP request
@@ -320,13 +338,13 @@ namespace IO.Swagger.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("SaqueepagueSondaPost", localVarResponse);
+                Exception exception = ExceptionFactory("SaqueepagueOauthTokenPost", localVarResponse);
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<SondaResp>(localVarStatusCode,
+            return new ApiResponse<AuthResp>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (SondaResp) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(SondaResp)));
+                (AuthResp) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(AuthResp)));
         }
 
     }
